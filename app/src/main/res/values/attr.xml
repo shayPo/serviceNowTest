@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="InputView">
+        <attr name="type" format="string"/>
+        <attr name="input_id" format="integer"/>
+    </declare-styleable>
+</resources>

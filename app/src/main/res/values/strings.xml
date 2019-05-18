@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ShayPolak</string>
+    <string name="type_first_name">First Name</string>
+    <string name="type_last_name">Last name</string>
+    <string name="submit">SUBMIT</string>
+    <string name="data_base">local_data_base</string>
+    <string name="Loading">loading</string>
+</resources>

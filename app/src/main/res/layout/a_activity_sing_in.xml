@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".view.ActivitySingIn">
+
+    <polak.shay.servicenow.shaypolak.view.customLayouts.InputView
+        android:id="@+id/first_name"
+        app:input_id="2"
+        app:type="@string/type_first_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <polak.shay.servicenow.shaypolak.view.customLayouts.InputView
+        android:id="@+id/last_name"
+        app:type="@string/type_last_name"
+        app:input_id="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:id="@+id/submit"
+        android:text="@string/submit"
+        android:enabled="false"
+        android:layout_gravity="end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</android.support.v7.widget.LinearLayoutCompat>

@@ -59,6 +59,7 @@ public class ActivitySingIn extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
+        mModel.mUser.mAfterApprove = true;
         Intent intent = new Intent(this, ActivityDispalyData.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);

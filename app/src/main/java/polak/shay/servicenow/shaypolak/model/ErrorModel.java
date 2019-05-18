@@ -26,9 +26,14 @@ public class ErrorModel implements Callback<JokeModel> {
     public void onResponse(Call<JokeModel> call, Response<JokeModel> response) {
         if (response.isSuccessful()) {
             Joke joke = response.body().mData;
-            if(joke != null && mAdapter != null) {
-                mAdapter.get().addJoke(joke);
+            if(joke != null)
+            {
+                mApp.get().mLocalData.addJoke(joke);
+                if(mAdapter != null) {
+                    mAdapter.get().addJoke(joke);
+                }
             }
+
         }
         mListener.get().onCallEnd();
     }

@@ -19,12 +19,10 @@ public class JokeAdapter extends RecyclerView.Adapter<JokeAdapter.JokeHolder>
 {
     private List<Joke> mData = new ArrayList<>();
     private LayoutInflater mInflater;
-    private WeakReference<OnLastItemVisable> mListener;
 
-
-    public JokeAdapter(OnLastItemVisable listener)
+    public JokeAdapter()
     {
-        mListener = new WeakReference<>(listener);
+
     }
 
 
@@ -42,12 +40,6 @@ public class JokeAdapter extends RecyclerView.Adapter<JokeAdapter.JokeHolder>
     @Override
     public void onBindViewHolder(@NonNull JokeHolder jokeHolder, int position) {
         if(mData != null && mData.size() > position) {
-            if (position == mData.size() - 1) {
-                OnLastItemVisable event = mListener.get();
-                if(event != null) {
-                    event.LastItemVisible();
-                }
-            }
             jokeHolder.setup(mData.get(position));
         }
     }
@@ -86,10 +78,5 @@ public class JokeAdapter extends RecyclerView.Adapter<JokeAdapter.JokeHolder>
                 mText.setTag(joke.getId());
                 mText.setText(joke.getJoke());
         }
-    }
-
-    public interface OnLastItemVisable
-    {
-        void LastItemVisible();
     }
 }

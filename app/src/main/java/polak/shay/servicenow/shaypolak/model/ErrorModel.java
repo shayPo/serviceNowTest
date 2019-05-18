@@ -12,16 +12,14 @@ import retrofit2.Response;
 public class ErrorModel implements Callback<JokeModel> {
     private WeakReference<App> mApp;
     private WeakReference<JokeAdapter> mAdapter;
+    private WeakReference<CallListener> mListener;
     private int mNumberOfTimeout = 0;
 
-    public ErrorModel(App app, JokeAdapter adapter)
+    public ErrorModel(App app, JokeAdapter adapter, CallListener listener)
     {
         mApp = new WeakReference<>(app);
         mAdapter = new WeakReference<>(adapter);
-    }
-
-    public void setNumberOfTimeout(int numberOfTimeout) {
-        this.mNumberOfTimeout = numberOfTimeout;
+        mListener = new WeakReference<>(listener);
     }
 
     @Override
@@ -32,15 +30,20 @@ public class ErrorModel implements Callback<JokeModel> {
                 mAdapter.get().addJoke(joke);
             }
         }
+        mListener.get().onCallEnd();
     }
 
     @Override
     public void onFailure(Call<JokeModel> call, Throwable t) {
         mNumberOfTimeout++;
-        if(mNumberOfTimeout >= 2) {
-            ErrorModel error = new ErrorModel(mApp.get(), mAdapter.get());
-            error.setNumberOfTimeout(mNumberOfTimeout);
-            call.enqueue(error);
+        if(mNumberOfTimeout < 3) {
+            call.enqueue(this);
         }
+        mListener.get().onCallEnd();
+    }
+
+    public interface CallListener
+    {
+        void onCallEnd();
     }
 }
